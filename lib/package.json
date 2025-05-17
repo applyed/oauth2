@@ -1,0 +1,26 @@
+{
+  "name": "@applyed/oauth2-server",
+  "version": "0.0.1",
+  "description": "oauth2 library",
+  "main": "dist/server.js",
+  "types": "dist/server.d.ts",
+  "scripts": {
+    "test": "jest",
+    "build": "tsc",
+    "prepack": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/applyed/oauth2-server.git"
+  },
+  "keywords": [
+    "oauth2",
+    "server"
+  ],
+  "author": "Shashi Shekhar <shshekhar93@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/applyed/oauth2-server/issues"
+  },
+  "homepage": "https://github.com/applyed/oauth2-server#readme"
+}

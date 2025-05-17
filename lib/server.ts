@@ -62,3 +62,5 @@ export class OAuth2Server implements Endpoints {
     return this.accessTokenAuthorizer.authorizeAccessToken(request);
   }
 }
+
+export * from './types/models';
