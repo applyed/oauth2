@@ -4,6 +4,7 @@ export const APIS = {
   login: '/api/v1/login',
   signup: '/api/v1/signup',
   userInfo: '/api/v1/user-info',
+  appState: '/api/v1/app-state',
 };
 
 export class APIError extends Error {
@@ -38,7 +39,7 @@ export function useAPIResult<T>(
 ) {
   const [state, setState] = useState<Omit<APIResultState<T>, 'refetch'>>({
     data: null,
-    loading: false,
+    loading: !skip,
     error: null,
   });
 
@@ -110,4 +111,8 @@ export function useSignup() {
 
 export function useUser() {
   return useAPIResult(APIS.userInfo);
+}
+
+export function useAppState() {
+  return useAPIResult<{ isSettingUp: boolean }>(APIS.appState);
 }

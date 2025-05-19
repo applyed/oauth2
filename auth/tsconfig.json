@@ -1,7 +1,7 @@
 {
   "extends": "@tsconfig/recommended/tsconfig.json",
   "compilerOptions": {
-    "outDir": "dist",
+    "outDir": "dist-server",
     "target": "es6",
     "module": "esnext",
     "moduleResolution": "node",
@@ -10,6 +10,10 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
+  },
+  "tsc-alias": {
+    "resolveFullPaths": true,
+    "verbose": false
   },
   "include": ["**/*"]
 }

@@ -8,7 +8,7 @@ import { Select } from '../common/select';
 import { MultiSelect, MultiSelectOption } from '../common/multi-select';
 import { APIError, useSignup } from '../api/api';
 
-export function Signup() {
+export function Signup({ isSettingUp }: { isSettingUp: Boolean }) {
   const [css] = useStyletron();
 
   const { refetch: signupAPI, loading: signupLoading, error } = useSignup();

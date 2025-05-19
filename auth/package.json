@@ -1,10 +1,14 @@
 {
   "name": "@applyed/auth-server",
+  "type": "module",
   "version": "0.0.1-dev",
   "description": "An auth server built on top of @applyed/oauth2-server",
   "scripts": {
     "test": "jest",
-    "dev": "concurrently \"tsx watch server/index.ts\" \"parcel client/index.html\""
+    "dev": "concurrently \"tsx watch server/index.ts\" \"parcel client/index.html\"",
+    "build": "tsc && tsc-alias && parcel build --dist-dir=dist-client client/index.html",
+    "start": "node dist-server/server/index.js",
+    "clean": "rm -rf dist-server dist-client"
   },
   "repository": {
     "type": "git",
@@ -25,15 +29,19 @@
   },
   "homepage": "https://github.com/applyed/oauth2-server#readme",
   "dependencies": {
-    "@applyed/oauth2-server": "^0.0.1",
+    "@applyed/oauth2-server": "^0.0.2",
+    "bcryptjs": "^3.0.2",
     "connect-session-sequelize": "^7.1.7",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "express-session": "^1.18.1",
+    "pg": "^8.16.0",
+    "pg-hstore": "^2.3.4",
     "sequelize": "^6.37.7",
     "sqlite3": "^5.1.7"
   },
   "devDependencies": {
+    "@tsconfig/recommended": "^1.0.8",
     "@types/express": "^5.0.1",
     "@types/express-session": "^1.18.1",
     "@types/react": "^19.1.2",
@@ -41,10 +49,13 @@
     "@types/styletron-react": "^5.0.8",
     "concurrently": "^9.1.2",
     "parcel": "^2.14.4",
+    "path-browserify": "^1.0.1",
+    "process": "^0.11.10",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "styletron-engine-atomic": "^1.6.2",
     "styletron-react": "^6.1.1",
+    "tsc-alias": "^1.8.16",
     "tsx": "^4.19.4"
   }
 }

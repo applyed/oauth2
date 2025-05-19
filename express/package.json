@@ -1,0 +1,22 @@
+{
+  "name": "@applyed/oauth2-express",
+  "version": "0.0.1-dev",
+  "description": "Express connector for the @applyed/oauth2-server",
+  "main": "index.ts",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/applyed/oauth2-server.git"
+  },
+  "keywords": [
+    "oauth"
+  ],
+  "author": "Shashi Shekhar <shshekhar93@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/applyed/oauth2-server/issues"
+  },
+  "homepage": "https://github.com/applyed/oauth2-server#readme"
+}

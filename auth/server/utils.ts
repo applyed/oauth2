@@ -1,4 +1,6 @@
 import { Request } from 'express';
+import { ADMIN_ROLE } from './roles';
+import { User } from '../models/user';
 
 const DESTINATION_HEADERS = {
   host: 'X-Forwarded-Host',
@@ -23,4 +25,15 @@ export function parseDestination(req: Request) {
         method: undefined,
       }
     );
+}
+
+export async function allowSignup(req: Request) {
+  if (req.user && req.user.roles.includes(ADMIN_ROLE)) {
+    return true;
+  }
+  const firstUser = await User.findOne();
+  if (firstUser === null) {
+    return true;
+  }
+  return false;
 }

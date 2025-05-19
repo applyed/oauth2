@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import { ThemePreferencesEnum, User } from '../models/user';
 import bcrypt from 'bcryptjs';
-import { ADMIN_ROLE, isAllowed } from './roles';
-import { parseDestination } from './utils';
+import { isAllowed } from './roles';
+import { allowSignup, parseDestination } from './utils';
 
 export const apiRouter = Router();
 
@@ -88,8 +88,7 @@ apiRouter.get('/auth', (req, res) => {
 });
 
 apiRouter.post('/signup', async (req, res) => {
-  console.log(req.user, req.user.roles);
-  if (!req.user || !req.user.roles.includes(ADMIN_ROLE)) {
+  if (!allowSignup(req)) {
     res.status(404).end('Not Found');
     return;
   }
@@ -121,5 +120,12 @@ apiRouter.post('/signup', async (req, res) => {
 
   res.json({
     success: true,
+  });
+});
+
+apiRouter.get('/app-state', async (req, res) => {
+  const firstUser = await User.findOne();
+  res.json({
+    isSettingUp: firstUser === null,
   });
 });

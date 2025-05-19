@@ -1,7 +1,8 @@
-node_modules
+build
 dist
 dist-server
 dist-client
+node_modules
 .env
 db.sqlite
 .parcel-cache
