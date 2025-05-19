@@ -1,6 +1,6 @@
 {
   "name": "@applyed/oauth2-server",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "oauth2 library",
   "main": "dist/server.js",
   "types": "dist/server.d.ts",
@@ -22,5 +22,10 @@
   "bugs": {
     "url": "https://github.com/applyed/oauth2-server/issues"
   },
-  "homepage": "https://github.com/applyed/oauth2-server#readme"
+  "homepage": "https://github.com/applyed/oauth2-server#readme",
+  "devDependencies": {
+    "@tsconfig/recommended": "^1.0.8",
+    "@types/node": "^22.15.19",
+    "typescript": "^5.8.3"
+  }
 }
