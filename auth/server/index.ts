@@ -28,10 +28,16 @@ if (distExists) {
 
 app.use(
   Session({
+    name: '_tsc',
+    proxy: true,
     secret: process.env.SESSION_SECRET ?? 'Keyboard cat',
     store: sessionStore,
     resave: false,
     saveUninitialized: true,
+    cookie: {
+      domain: 'applyed.in',
+      secure: true,
+    },
   })
 );
 app.use(loadLoggedInUser);
@@ -45,7 +51,7 @@ app.get('/{*any}', (req, res) => {
 
 const PORT = process.env.PORT ?? '3000';
 app.listen(PORT, async () => {
-  console.log('Application started!');
+  console.log('Application started on port', PORT);
   await initDB();
   sessionStore.sync();
   console.log('DB initialized!');

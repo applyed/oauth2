@@ -1,30 +1,23 @@
 import { Request } from 'express';
 import { ADMIN_ROLE } from './roles';
 import { User } from '../models/user';
+import { URL } from 'node:url';
 
 const DESTINATION_HEADERS = {
+  proto: 'X-Forwarded-Proto',
   host: 'X-Forwarded-Host',
   uri: 'X-Forwarded-Uri',
   method: 'X-Forwarded-Method',
 };
 
 export function parseDestination(req: Request) {
-  return Object.entries(DESTINATION_HEADERS)
-    .map(([key, headerName]): [string, URL | undefined] => {
-      const headerValue = req.header(headerName);
-      return [key, headerValue ? new URL(headerValue) : undefined];
-    })
-    .reduce<{ [key in keyof typeof DESTINATION_HEADERS]: URL | undefined }>(
-      (acc, [key, value]) => ({
-        ...acc,
-        [key]: value,
-      }),
-      {
-        host: undefined,
-        uri: undefined,
-        method: undefined,
-      }
-    );
+  const proto = req.header(DESTINATION_HEADERS.proto);
+  const host = req.header(DESTINATION_HEADERS.host);
+  const uri = req.header(DESTINATION_HEADERS.uri);
+  const method = req.header(DESTINATION_HEADERS.method);
+
+  const url = new URL(`${proto}://${host}${uri}`);
+  return { url, method };
 }
 
 export async function allowSignup(req: Request) {

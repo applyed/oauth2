@@ -63,10 +63,11 @@ apiRouter.get('/check-username', async (req, res) => {
 });
 
 apiRouter.get('/auth', (req, res) => {
+  console.log(req.headers);
   const destination = parseDestination(req);
-  const destinationURI = destination.uri ?? destination.host;
+  const destinationURL = destination.url;
 
-  if (!destinationURI) {
+  if (!destinationURL) {
     res.status(403).end('Unknown destination!');
     return;
   }
@@ -74,12 +75,14 @@ apiRouter.get('/auth', (req, res) => {
   const loggedInUser = req.user;
   if (!loggedInUser) {
     res.redirect(
-      `/login?returnURI=${encodeURIComponent(destinationURI.toString())}`
+      `https://auth.applyed.in/login?returnURI=${encodeURIComponent(
+        destinationURL.toString()
+      )}`
     );
     return;
   }
 
-  if (!isAllowed(destinationURI, loggedInUser)) {
+  if (!isAllowed(destinationURL, loggedInUser)) {
     res.status(403).end('Forbidden');
     return;
   }
